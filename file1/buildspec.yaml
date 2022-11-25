@@ -1,0 +1,47 @@
+
+
+
+#############################################################################################################################
+
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - echo $AWS_DEFAULT_REGION
+      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin 033746436249.dkr.ecr.us-east-2.amazonaws.com/dockerfile1:latest
+      - REPOSITORY_NAME="ecr"      
+      - REPOSITORY_URI=033746436249.dkr.ecr.us-east-2.amazonaws.com/dockerfile1:latest
+      - REPOSITORY_NAME="ecr"      
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=${COMMIT_HASH:=latest}
+  build:
+    commands:
+      - echo Building the Docker image...
+      - docker build -t $REPOSITORY_NAME:file1 -f ./file1/dockerfile .
+      
+      
+      
+      - docker tag $REPOSITORY_NAME:file1 $REPOSITORY_URI:file1
+      
+
+
+      #- docker tag $REPOSITORY_NAME:latest $REPOSITORY_URI:$IMAGE_TAG
+
+
+  post_build:
+    commands:
+      - docker push $REPOSITORY_URI:file1
+     
+      
+      #- docker push $REPOSITORY_URI:$IMAGE_TAG
+
+      - printf '[{"name":"file1","imageUri":"%s"}]' $REPOSITORY_URI:file11 > file1.json
+     
+
+
+artifacts:
+  files: 
+    - imagedefinitions1.json
+   
