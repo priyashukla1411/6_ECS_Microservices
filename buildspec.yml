@@ -33,7 +33,9 @@ phases:
       #- docker push $REPOSITORY_URI:$IMAGE_TAG
 
       - echo Writing image definitions file...
-      - printf '[{"name":"html1-Service","imageUri":"033746436249.dkr.ecr.us-east-2.amazonaws.com/dockerfile1:latest"}]' 033746436249.dkr.ecr.us-east-2.amazonaws.com/dockerfile1:latest > imagedefinitions1.json
+     
+      - echo Writing image definitions file...
+      - printf '[{"name":"html1_container","imageUri":"033746436249.dkr.ecr.us-east-2.amazonaws.com/dockerfile1:latest"}]'  > imagedefinitions1.json
 
 
 artifacts:
