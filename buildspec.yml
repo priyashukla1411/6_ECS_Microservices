@@ -1,6 +1,5 @@
 
 
-
 #############################################################################################################################
 version: 0.2
 
@@ -18,10 +17,9 @@ phases:
     commands:
       - echo Building the Docker image...
       - docker build -t ecr -f ./file1/Dockerfile .
-      - docker tag file1:latest 033746436249.dkr.ecr.us-east-2.amazonaws.com/dockerfile1:latest
-
-#       - docker build -t ecr -f ./file2/Dockerfile .
-#       - docker tag  file2:latest 033746436249.dkr.ecr.us-east-2.amazonaws.com/dockerfile2:latest   ###### change
+      - docker tag dockerfile1:latest 033746436249.dkr.ecr.us-east-2.amazonaws.com/dockerfile1:latest
+      # - docker build -t ecr -f ./file2/Dockerfile .
+      # - docker tag  file2:latest 033746436249.dkr.ecr.us-east-2.amazonaws.com/dockerfile2:latest   ###### change
       
 
 
@@ -32,8 +30,8 @@ phases:
     commands:
       -  echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push 033746436249.dkr.ecr.us-east-2.amazonaws.com/dockerfile1:latest 
-    #  - docker push 033746436249.dkr.ecr.us-east-2.amazonaws.com/dockerfile2:latest  ##### change
+      - docker push 033746436249.dkr.ecr.us-east-2.amazonaws.com/dockerfile1:latest
+      # - docker push 033746436249.dkr.ecr.us-east-2.amazonaws.com/dockerfile2:latest  ##### change
      
       
       #- docker push $REPOSITORY_URI:$IMAGE_TAG
@@ -42,7 +40,7 @@ phases:
      
       - echo Writing image definitions file...
       - printf '[{"name":"html1_container","imageUri":"033746436249.dkr.ecr.us-east-2.amazonaws.com/dockerfile1:latest"}]'  > imagedefinitions1.json
-   #   - printf '[{"name":"html2_container","imageUri":"033746436249.dkr.ecr.us-east-2.amazonaws.com/dockerfile2:latest"}]'  > imagedefinitions2.json
+      # - printf '[{"name":"html2_container","imageUri":"033746436249.dkr.ecr.us-east-2.amazonaws.com/dockerfile2:latest"}]'  > imagedefinitions2.json
 
 
 artifacts:
@@ -50,5 +48,5 @@ artifacts:
    
     - imagedefinitions1.json
 
- #   - imagedefinitions2.json
+    # - imagedefinitions2.json
 
