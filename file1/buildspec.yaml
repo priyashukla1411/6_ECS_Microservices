@@ -19,11 +19,9 @@ phases:
   build:
     commands:
       - echo Building the Docker image...
-      - docker build -t $REPOSITORY_NAME:file1 -f ./file1/dockerfile .
+      - docker build -t ecr -f ./ecr/Dockerfile .
       
-      
-      
-      - docker tag $REPOSITORY_NAME:file1 $REPOSITORY_URI:file1
+      - docker tag ecr:latest 033746436249.dkr.ecr.us-east-2.amazonaws.com/dockerfile1:latest
       
 
 
@@ -32,13 +30,15 @@ phases:
 
   post_build:
     commands:
-      - docker push $REPOSITORY_URI:file1
+      -  echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - docker push 033746436249.dkr.ecr.us-east-2.amazonaws.com/dockerfile1:latest
      
       
       #- docker push $REPOSITORY_URI:$IMAGE_TAG
 
-      - printf '[{"name":"file1","imageUri":"%s"}]' $REPOSITORY_URI:file11 > file1.json
-     
+      - echo Writing image definitions file...
+      - printf '[{"name":"html1-Service","imageUri":"033746436249.dkr.ecr.us-east-2.amazonaws.com/dockerfile1:latest"}]' 033746436249.dkr.ecr.us-east-2.amazonaws.com/dockerfile1:latest > imagedefinitions1.json
 
 
 artifacts:
