@@ -16,7 +16,7 @@ phases:
   build:
     commands:
       - echo Building the Docker image...
-      - docker build -t ecr -f ./file1/Dockerfile .
+      - docker build -t dockerfile1:latest -f ./file1/Dockerfile .
       - docker tag dockerfile1:latest 033746436249.dkr.ecr.us-east-2.amazonaws.com/dockerfile1:latest
       # - docker build -t ecr -f ./file2/Dockerfile .
       # - docker tag  file2:latest 033746436249.dkr.ecr.us-east-2.amazonaws.com/dockerfile2:latest   ###### change
