@@ -18,8 +18,10 @@ phases:
       - echo Building the Docker image...
       - docker build -t dockerfile1:latest -f ./file1/Dockerfile .
       - docker tag dockerfile1:latest 033746436249.dkr.ecr.us-east-2.amazonaws.com/dockerfile1:latest
+      
       - docker build -t dockerfile2:latest -f ./file2/Dockerfile .
       - docker tag  dockerfile2:latest 033746436249.dkr.ecr.us-east-2.amazonaws.com/dockerfile2:latest   ###### change
+      
       - docker build -t dockerfile3:latest -f ./file3/Dockerfile .
       - docker tag dockerfile3:latest 033746436249.dkr.ecr.us-east-2.amazonaws.com/dockerfile3:latest   ###### change
 
